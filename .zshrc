@@ -7,8 +7,8 @@ export PATH="$HOME/.local/bin:$PATH"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="sorin-custom"
+ZSH_THEME="robbyrussell"
+#ZSH_THEME="sorin-custom"
 # Uncomment the following line to use case-sensitive completion.
  CASE_SENSITIVE="true"
 
@@ -101,4 +101,4 @@ alias matlab='sudo /usr/local/MATLAB/R2016a/bin/matlab'
 alias rm='rm -i'
 
 # Powerline
-# /usr/share/powerline/bindings/zsh/powerline.zsh
+. /usr/share/powerline/bindings/zsh/powerline.zsh
