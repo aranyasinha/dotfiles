@@ -3,8 +3,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+"vimproc
+Plugin 'Shougo/vimproc.vim'
 "Universal Colour-schemes plugin
 Plugin 'flazz/vim-colorschemes'
 "Sensible
@@ -13,30 +13,16 @@ Plugin 'tpope/vim-sensible'
 Plugin 'Valloric/YouCompleteMe'
 "Syntastic syntax checker
 Plugin 'vim-syntastic/syntastic'
-"Vim hdevtools
-Plugin 'bitc/vim-hdevtools'
-"Mini map
-Plugin 'severin-lemaignan/vim-minimap'
-"Nerd tree
-Plugin 'scrooloose/nerdtree'
-"Nerd tree tabs
-Plugin 'jistr/vim-nerdtree-tabs'
 "Additional syntax highlighting for c++
 Plugin 'octol/vim-cpp-enhanced-highlight'
 "Auto braces and other stuff
 Plugin 'delimitMate.vim'
-"PEP8 checker
+""PEP8 checker
 Plugin 'nvie/vim-flake8'
 "Haskell syntax highlighting and indentation
 Plugin 'neovimhaskell/haskell-vim'
-"Simply fold
-Plugin 'tmhedberg/SimpylFold'
 " Nand2Tetris syntax highlighting
 Plugin 'sevko/vim-nand2tetris-syntax'
-"Nerd tree syntax highlight
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-"Vim dev icons
-Plugin 'ryanoasis/vim-devicons'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -47,30 +33,46 @@ filetype plugin indent on    " required
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-let delimitMate_expand_cr=1
-set nocompatible
-let python_highlight_all=1
-syntax on
-set number
-set mouse=a
-set ruler
-set showcmd
-set visualbell
-set backspace=indent,eol,start
-
 "Powerline
   python3 from powerline.vim import setup as powerline_setup
   python3 powerline_setup()
   python3 del powerline_setup
 
-"Skeleton for cpp files
-au BufNewFile *.cpp 0r ~/.vim/skeleton/skeleton.cpp
 
-" use indentation of previous line
+"disable compatibility with vi
+set nocompatible
+
+"syntax highlighting
+syntax on
+
+"enable line numbers
+set number
+
+"enable mouse
+set mouse=a
+
+set ruler
+set showcmd
+set visualbell
+
 set autoindent
-
-" use intelligent indentation for C
 set smartindent
+
+"highlight matching braces
+set showmatch
+
+"intelligent comments
+set comments=sl:/*,mb:\ *,elx:\ */
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" Enable folding with space bar
+nnoremap <space> za
+
+" Always show status line
+set laststatus=2
 
 " wrap lines, tab settings 
 set wrap
@@ -81,18 +83,8 @@ set textwidth=120
 
 "256 colours
 set t_Co=256
-" highlight matching braces
-set showmatch
-" intelligent comments
-set comments=sl:/*,mb:\ *,elx:\ */
-
-" Use system clipboard
-set clipboard=unnamedplus
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
-" Enable folding with space bar
-nnoremap <space> za
+"use system clipboard
+set clipboard=unmanedplus
 
 "PEP8 indentation
 au BufNewFile,BufRead *.py
@@ -104,34 +96,10 @@ au BufNewFile,BufRead *.py
     \ set autoindent|
     \ set fileformat=unix
 
-" Always show status line
-set laststatus=2
-
-"YouCompleteMe conf file setting
+"YouCompleteMe global conf file setting
 let g:ycm_confirm_extra_conf = 0
-"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/aranya/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
 
-"vim-cpp-enhanced-highlight settings
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_simple_template_highlight = 1
-
-"Nerd Tree config
-"autocmd vimenter * NERDTree
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" haskell-vim
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-let g:haskell_classic_highlighting = 1
 " in normal mode F2 will save the file
 nmap <F2> :w<CR>
 " in insert mode F2 will exit insert, save, enters insert again
