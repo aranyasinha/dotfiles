@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/cool/bin"
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/aranya/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -39,7 +39,7 @@ export UPDATE_ZSH_DAYS=7
 ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -58,10 +58,9 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colorize git colored-man-pages cp python vundle tmux command-not-found
-         zsh-autosuggestions)
+plugins=(colored-man-pages git cp python vundle command-not-found zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -83,8 +82,11 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# powerline
-#. /home/aranya/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+#256-bit colours
+export  TERM="xterm-256color"
+
+# Powerline
+. /home/aranya/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -92,6 +94,20 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias rm='rm -i'
+alias zshconfig="vim ~/.zshrc"
+alias vimconfig="vim ~/.vimrc"
+alias tmuxconfig="vim ~/.tmux.conf"
+alias rm="rm -i"
+
+# Start tmux and ensure it doen't call itself
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" ]] && exec tmux
+
+export PYTHONPATH=$PYTHONPATH:/home/aranya/tensorflow/models/research:/home/aranya/tensorflow/models/research/slim
+. /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
+
+# Oracle 11g
+export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+export ORACLE_SID=XE
+export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
+export PATH=$ORACLE_HOME/bin:$PATH

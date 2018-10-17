@@ -16,13 +16,17 @@ Plugin 'vim-syntastic/syntastic'
 "Additional syntax highlighting for c++
 Plugin 'octol/vim-cpp-enhanced-highlight'
 "Auto braces and other stuff
-Plugin 'delimitMate.vim'
+Plugin 'jiangmiao/auto-pairs'
 ""PEP8 checker
 Plugin 'nvie/vim-flake8'
 "Haskell syntax highlighting and indentation
 Plugin 'neovimhaskell/haskell-vim'
 " Nand2Tetris syntax highlighting
 Plugin 'sevko/vim-nand2tetris-syntax'
+"Flex, bison highlighting
+Plugin 'justinmk/vim-syntax-extra'
+"Database extensions
+Plugin 'vim-scripts/dbext.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -96,8 +100,12 @@ au BufNewFile,BufRead *.py
     \ set autoindent|
     \ set fileformat=unix
 
+"Cool files
+au BufNewFile,BufRead *.cl setf cool
+au BufNewFile,BufRead *.cool setf cool
+
+
 "YouCompleteMe global conf file setting
-let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '/home/aranya/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
 
 " in normal mode F2 will save the file
