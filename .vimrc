@@ -17,11 +17,11 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 "Auto braces and other stuff
 Plugin 'jiangmiao/auto-pairs'
-""PEP8 checker
+"PEP8 checker
 Plugin 'nvie/vim-flake8'
 "Haskell syntax highlighting and indentation
 Plugin 'neovimhaskell/haskell-vim'
-" Nand2Tetris syntax highlighting
+"Nand2Tetris syntax highlighting
 Plugin 'sevko/vim-nand2tetris-syntax'
 "Flex, bison highlighting
 Plugin 'justinmk/vim-syntax-extra'
